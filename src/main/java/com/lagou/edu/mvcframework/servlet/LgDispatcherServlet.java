@@ -253,16 +253,16 @@ public class LgDispatcherServlet extends HttpServlet {
 
         // 最终调用handler的method属性
         try {
-            if (!handlerMapping.applyPreHandle(req, resp)) {
+            if (!handlerMapping.getHandler().applyPreHandle(req, resp)) {
                 return;
             }
             handlerMapping.getMethod().invoke(handlerMapping.getController(), paraValues);
-            handlerMapping.applyPostHandle(req, resp, null);
-            handlerMapping.triggerAfterCompletion(req, resp, null);
+            handlerMapping.getHandler().applyPostHandle(req, resp, null);
+            handlerMapping.getHandler().triggerAfterCompletion(req, resp, null);
         } catch (Exception e) {
             e.printStackTrace();
             try {
-                handlerMapping.triggerAfterCompletion(req, resp, e);
+                handlerMapping.getHandler().triggerAfterCompletion(req, resp, e);
             } catch (Exception e1) {
                 throw new RuntimeException(e1);
             }

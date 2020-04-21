@@ -28,14 +28,14 @@ public class DemoController {
      */
     @LagouRequestMapping("/query")
     public String query(HttpServletRequest request, HttpServletResponse response,String name) {
-        System.out.println("controller 实现类中的name参数：" + name) ;
+        System.out.println("controller中的name参数：" + name) ;
         return demoService.get(name);
     }
 
     @LagouRequestMapping("/validate")
     @Security({"wangwu"})
     public String validate(HttpServletRequest request, HttpServletResponse response,String name) {
-        System.out.println("controller 实现类中的name参数：" + name) ;
+        System.out.println("controller中的name参数：" + name) ;
         return demoService.get(name);
     }
 }
